@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Work with pizza</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p>
+            <h:outputText value="#{pizzaBean.getError()}"/>
+        </p>
+        <h:dataTable border="1" id="table" value="#{pizzaBean.getPizzaList()}" var="pizza">
+            <h:column>
+                <!-- column header -->
+                <f:facet name="header">Id</f:facet>
+                <!-- row record -->
+                #{pizza.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Pizza size</f:facet>
+                #{pizza.size}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Ingredient</f:facet>
+                #{pizza.getIngedientsInString()}
+            </h:column>
+        </h:dataTable>
+
+
+        <p> Id:
+            <h:inputText binding="#{pizzaId}" style="width: 100px;"/>
+        </p>
+
+        <p><h:commandButton value="Remove" action="#{pizzaBean.removePizza(pizzaId.value)}"/></p>
+
+    </h:form>
+</h:body>
+</html>

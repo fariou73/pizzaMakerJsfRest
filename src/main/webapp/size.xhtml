@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Work with pizza size</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p>
+            <h:outputText value="#{pizzaSizeBean.getError()}"/>
+        </p>
+        <h:dataTable border="1" id="table" value="#{pizzaSizeBean.getPizzaSize()}" var="pizzaSize">
+            <h:column>
+                <!-- column header -->
+                <f:facet name="header">Id</f:facet>
+                <!-- row record -->
+                #{pizzaSize.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Pizza size</f:facet>
+                #{pizzaSize.size}
+            </h:column>
+        </h:dataTable>
+
+
+        <p> Id:
+            <h:inputText binding="#{pizzaSizeId}" style="width: 100px;"/>
+        </p>
+
+        <p> Size:
+            <h:inputText binding="#{pizzaSizeName}" style="width: 100px;"/>
+        </p>
+
+        <p><h:commandButton value="Add" action="#{pizzaSizeBean.addPizzaSize(pizzaSizeName.value)}"/>
+            <h:commandButton value="Remove" action="#{pizzaSizeBean.removePizzaSize(pizzaSizeId.value)}"/></p>
+
+    </h:form>
+</h:body>
+</html>

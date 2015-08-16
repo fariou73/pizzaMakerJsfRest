@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Work with ingredient</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p>
+            <h:outputText value="#{ingredientBean.getError()}"/>
+        </p>
+        <h:dataTable border="1" id="table" value="#{ingredientBean.getIngredientList()}" var="ingredient">
+            <h:column>
+                <!-- column header -->
+                <f:facet name="header">Id</f:facet>
+                <!-- row record -->
+                #{ingredient.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Ingredient name</f:facet>
+                #{ingredient.name}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Count</f:facet>
+                #{ingredient.count}
+            </h:column>
+        </h:dataTable>
+
+        <p> Id:
+            <h:inputText binding="#{ingredientId}" style="width: 100px;"/>
+        </p>
+
+        <p>Name:
+            <h:inputText binding="#{ingredientName}" style="width: 100px;"/>
+        </p>
+
+        <p> Count:
+            <h:inputText binding="#{ingredientCount}" style="width: 100px;"/>
+        </p>
+
+        <p><h:commandButton value="Add"
+                            action="#{ingredientBean.addIngredient(ingredientName.value, ingredientCount.value)}"/>
+
+            <h:commandButton value="Remove" action="#{ingredientBean.removeIngredient(ingredientId.value)}"/>
+
+            <h:commandButton value="Update"
+                             action="#{ingredientBean.updateIngredient(ingredientId.value, ingredientName.value, ingredientCount.value)}"/>
+        </p>
+
+
+    </h:form>
+</h:body>
+</html>
